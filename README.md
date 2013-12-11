@@ -11,4 +11,6 @@ A community-curated list of one-liners in Ruby
 
 ### Hashes
 
+### Regular Expressions
+
 ### Calculations
