@@ -43,3 +43,9 @@ k, v = *h.to_a.transpose
 ### Regular Expressions
 
 ### Calculations
+
+##### Compute `n!` for all nonnegative integers n (returns `nil` otherwise):
+
+```ruby
+(1..n).reduce(1, :*) if n.is_a?(Integer) && n > -1
+```
