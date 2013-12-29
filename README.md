@@ -49,3 +49,19 @@ k, v = *h.to_a.transpose
 ```ruby
 (1..n).reduce(1, :*) if n.is_a?(Integer) && n > -1
 ```
+
+### Miscellaneous
+
+##### Given an `m`x`n` matrix, return an array that represents the clockwise spiral path from the top left to the center. For example, given
+
+    matrix = [[1,2,3],
+              [8,9,4],
+              [7,6,5]]
+              
+`spiral(matrix)` should return `[1, 2, 3, 4, 5, 6, 7, 8, 9]`
+
+```ruby
+def spiral(matrix)
+  matrix.empty? ? [] : matrix.shift + spiral(matrix.transpose.reverse)
+end
+```
