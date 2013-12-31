@@ -9,6 +9,14 @@ A community-curated list of one-liners (or several-liners if elegance demands) i
 
 ### Arrays
 
+##### Convert an array `a` with even index whose elements are alternating key value pairs (e.g., `[k1, v1, k2, v2,..., kn, vn]` into the respective hash `h`
+```ruby
+h = Hash[*a]
+```
+This is likely not a good idea if `a` happens to be a large dataset as the splat operator will expand all contents of the array to the stack. In that case, you can use `h = Hash[a.each_slice(2).to_a]`.
+
+In the event `a` is already a 2D array of the form `[[k1, v1], [k2, v2],..., [kn, vn]]`, you can simply do `h = Hash[a]`. And from Ruby 2.1 onwards, you can simply use `Array#to_h`: `h = a.to_h`.
+
 ##### Create an `n`x`n` multiplication table represented by a 2-dimensional array:
 ```ruby
 [*1..n].product([*1..n]).map { |arr| arr.reduce(:*) }.each_slice(n).to_a
