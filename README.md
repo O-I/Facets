@@ -9,6 +9,13 @@ A community-curated list of one-liners (or several-liners if elegance demands) i
 
 ### Arrays
 
+##### Remove all instances of value `l` from an array `a` and return the result
+```ruby
+a - [l]
+```
+
+Or `a -= [l]` if you would like to reasign the result to `a`. This is the most elegant way I've seen of doing this. Doing something like `a.delete(l)` returns `l` rather than the updated value of `a` which disrupts method chaining. You could always do `a.tap { |x| x.delete(l) }`, but I think the above line is superior and just as chainable if enclosed in parentheses.
+
 ##### Convert an array `a` with even index whose elements are alternating key value pairs (e.g., `[k1, v1, k2, v2,..., kn, vn]` into the respective hash `h`
 ```ruby
 h = Hash[*a]
