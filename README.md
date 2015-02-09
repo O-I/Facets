@@ -38,6 +38,18 @@ And in terms of clarity, this one's about as good as it gets:
 Array.new(n) { |x| Array.new(n) { |y| (x+1)*(y+1) } }
 ```
 
+##### Calculate the frequency distribution of an array `a`:
+
+There are many ways to do this, but using `Enumerable#each_with_object` seems to be the most idiomatic:
+```ruby
+a.each_with_object(Hash.new(0)) { |element, frequency| frequency[element] += 1 }
+```
+
+`Enumerable#reduce` also works, but feels clumsier. Notice that the block parameters are reversed compared to the above and the need to explicitly return the accumulator on each pass:
+```ruby
+a.reduce(Hash.new(0)) { |frequency, element| frequency[element] += 1; frequency }
+```
+
 ### Hashes
 
 ##### Create a hash `h` from two arrays `k` and `v` of equal length that represent `h`'s keys and values, respectively:
