@@ -50,6 +50,11 @@ a.each_with_object(Hash.new(0)) { |element, frequency| frequency[element] += 1 }
 a.reduce(Hash.new(0)) { |frequency, element| frequency[element] += 1; frequency }
 ```
 
+And yet another way using Ruby 2.2+ that seems truest to a functional style:
+```ruby
+a.group_by(&:itself).map { |k, v| [k, v.size] }.to_h
+```
+
 ### Hashes
 
 ##### Create a hash `h` from two arrays `k` and `v` of equal length that represent `h`'s keys and values, respectively:
