@@ -72,6 +72,16 @@ k, v = h.keys, h.values
 k, v = *h.to_a.transpose
 ```
 
+##### Weighted random sampling without replacement of a hash `h`'s keys whose values are weighted probabilities that sum to 1:
+```ruby
+h.max_by { |_, weight| rand ** (1.0/weight) }.first
+```
+
+This is essentially the weighted analogue of `Array#sample`. With Ruby 2.2+, we also have the analogue of `Array#sample(n)`:
+```ruby
+h.max_by(n) { |_, weight| rand ** (1.0/weight) }.map(&:first)
+```
+
 ### Regular Expressions
 
 ### Calculations
