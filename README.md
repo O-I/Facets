@@ -55,6 +55,20 @@ And yet another way using Ruby 2.2+ that seems truest to a functional style:
 a.group_by(&:itself).map { |k, v| [k, v.size] }.to_h
 ```
 
+##### Get all but the first element of an array `a`:
+
+You can use parallel assignment in conjunction with the splat operator if you're planning on using the head:
+```ruby
+head, *rest = a
+```
+
+But if you just want the rest, using `drop` is better:
+```ruby
+a.drop(1)
+```
+
+Both are preferable to `a[1..-1]` in that they return `[]` rather than `nil` if `a` is empty.
+
 ### Hashes
 
 ##### Create a hash `h` from two arrays `k` and `v` of equal length that represent `h`'s keys and values, respectively:
