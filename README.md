@@ -69,6 +69,13 @@ a.drop(1)
 
 Both are preferable to `a[1..-1]` in that they return `[]` rather than `nil` if `a` is empty.
 
+##### Find all duplicate values in an array `a` (Ruby 2.2+):
+```ruby
+a.group_by(&:itself).select { |_, v| v.size > 1 }.keys
+```
+
+You can replace `group_by(&:itself)` with `group_by { |n| n }` for lesser versions of Ruby.
+
 ### Hashes
 
 ##### Create a hash `h` from two arrays `k` and `v` of equal length that represent `h`'s keys and values, respectively:
