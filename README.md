@@ -76,6 +76,11 @@ a.group_by(&:itself).select { |_, v| v.size > 1 }.keys
 
 You can replace `group_by(&:itself)` with `group_by { |n| n }` for lesser versions of Ruby.
 
+##### Calculate rolling averages of an array `a` over interval length `n`:
+```ruby
+a.each_cons(n).map { |interval| interval.reduce(:+) / n.to_f }
+```
+
 ### Hashes
 
 ##### Create a hash `h` from two arrays `k` and `v` of equal length that represent `h`'s keys and values, respectively:
