@@ -5,6 +5,11 @@ A community-curated list of one-liners (or several-liners if elegance demands) i
 
 ### Files
 
+##### Convert the contents of `filename` to a string
+```ruby
+File.open(filename, 'rb') { |file| file.read }
+```
+
 ### Strings
 
 ### Arrays
