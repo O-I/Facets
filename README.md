@@ -12,6 +12,11 @@ File.open(filename, 'rb') { |file| file.read }
 
 ### Strings
 
+##### Calculate the Hamming distance between two strings `str1` and `str2` (returns `nil` if `str1` and `str2` are of unequal length):
+```ruby
+str1.chars.zip(str2.chars).reduce(0) { |sum, (x, y)| sum + (x == y ? 0 : 1) } if str1.size == str2.size
+```
+
 ### Arrays
 
 ##### Remove all instances of value `l` from an array `a` and return the result
