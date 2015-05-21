@@ -3,11 +3,21 @@ Facets
 
 A community-curated list of one-liners (or several-liners if elegance demands) in Ruby
 
-### Files
+### Files, Folders, and Paths
 
 ##### Convert the contents of `filename` to a string
 ```ruby
 File.open(filename, 'rb') { |file| file.read }
+```
+
+##### Get the current user's home directory
+```ruby
+Dir.home
+```
+
+This only works if `ENV['HOME']` is set, though. RubyTapas #10 gives us an alternative using `Etc` to find the current user's login name and passing that to `Dir.home`:
+```ruby
+Dir.home(Etc.getlogin)
 ```
 
 ### Strings
