@@ -101,6 +101,12 @@ You can replace `group_by(&:itself)` with `group_by { |n| n }` for lesser versio
 a.each_cons(n).map { |interval| interval.reduce(:+) / n.to_f }
 ```
 
+##### Reduce an array `a` of Boolean values
+
+For *and*, *or*, and *xor*, we can use `Enumerable#reduce` paired with the appropriate logical operator, i.e., `a.reduce(:&)`, `a.reduce(:|)`, and `a.reduce(:^)`, respectively.
+
+For reducing over *and* and *or*, I find `a.all?` and `a.any?` to be more idiomatic than explicit use of `reduce`.
+
 ### Hashes
 
 ##### Create a hash `h` from two arrays `k` and `v` of equal length that represent `h`'s keys and values, respectively:
