@@ -27,6 +27,11 @@ Dir.home(Etc.getlogin)
 str1.chars.zip(str2.chars).reduce(0) { |sum, (x, y)| sum + (x == y ? 0 : 1) } if str1.size == str2.size
 ```
 
+##### Determine whether one string `str1` is a rotation of another string `str2`:
+```ruby
+(str1 + str1)[str2] == str2
+```
+
 ### Arrays
 
 ##### Remove all instances of value `l` from an array `a` and return the result
