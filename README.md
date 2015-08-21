@@ -32,6 +32,13 @@ str1.chars.zip(str2.chars).reduce(0) { |sum, (x, y)| sum + (x == y ? 0 : 1) } if
 (str1 + str1)[str2] == str2
 ```
 
+##### Get the `n`th bit of an `Integer` `j`:
+
+My first inclination would be to convert to binary and use `[]`, i.e., `j.to_s(2)[n].to_i`, but you can call `[]` directly on an `Integer`:
+```ruby
+j[n]
+```
+
 ### Arrays
 
 ##### Remove all instances of value `l` from an array `a` and return the result
