@@ -171,3 +171,43 @@ def spiral(matrix)
   matrix.empty? ? [] : matrix.shift + spiral(matrix.transpose.reverse)
 end
 ```
+
+Note that this implementation has one major drawback — it mutates its argument.
+
+##### `Symbol#to_proc` with arguments
+
+This isn't a one-liner nor is it something I recommend without extreme caution as it patches a core class, but it is one of the slickest — if not the slickest — Ruby hacks I've ever seen.
+
+Open up the `Symbol` class and add a `call` method to it that contains the following lambda:
+
+```ruby
+class Symbol
+  def call(*args, &block)
+    ->(caller, *rest) { caller.send(self, *rest, *args, &block) }
+  end
+end
+```
+
+This gives `Symbol#to_proc` the superpower of accepting arguments. so, instead of doing, e.g.,
+
+```ruby
+nums = [1, 2, 3, 4]
+text = %w(this is a test)
+
+nums.map { |num| num ** 1i }
+text.map { |word| word.gsub('s', '*') }
+```
+
+we can do
+
+```ruby
+nums.map(&:**.call(1i))
+text.map(&:gsub.call('s', '*'))
+```
+
+But there's one more trick here. By naming our method `call`, we can use the shorter `.()` syntax:
+
+```ruby
+nums.map(&:**.(1i))
+text.map(&:gsub.('s', '*'))
+```
