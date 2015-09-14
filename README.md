@@ -119,6 +119,23 @@ For *and*, *or*, and *xor*, we can use `Enumerable#reduce` paired with the appro
 
 For reducing over *and* and *or*, I find `a.all?` and `a.any?` to be more idiomatic than explicit use of `reduce`.
 
+##### "Map compact" or "select map"
+
+This one is best illustrated by an example. Note, I don't think there is a particularly elegant way to do what I'm about to describe in Ruby. A common idiom is to map over a collection and select the resulting values for those elements which conform to some predicate.
+
+For example, suppose we have an array `a = [1, 2, 3, 4, 5]` and want to get a resulting collection that adds 1 to each element only if that element is even. We can achieve this in several ways:
+
+```ruby
+a = [1, 2, 3, 4, 5]
+
+a.map { |l| l + 1 if l.even? }.compact                      # => [3, 5]
+a.select(&:even?).map { |l| l + 1 }                         # => [3, 5]
+a.each_with_object([]) { |l, res| res << l + 1 if l.even? } # => [3, 5]
+a.reduce([]) { |res, l| res.push(l + 1) if l.even?; res }   # => [3, 5]
+```
+
+All of these one-liners return the desired result, all of them feel clumsy.
+
 ### Hashes
 
 ##### Create a hash `h` from two arrays `k` and `v` of equal length that represent `h`'s keys and values, respectively:
