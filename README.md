@@ -153,6 +153,13 @@ k, v = h.keys, h.values
 k, v = *h.to_a.transpose
 ```
 
+##### Remove key-value pairs in hash `h` given keys in array `a`:
+
+ActiveSupport has a nifty little method for this called `Hash#except`. The best I could come up with for doing this in one line with Ruby non-destructively is
+```ruby
+hash.tap { |h| a.map { |k| h.delete(k) } }
+```
+
 ##### Weighted random sampling without replacement of a hash `h`'s keys whose values are weighted probabilities that sum to 1:
 ```ruby
 h.max_by { |_, weight| rand ** (1.0/weight) }.first
